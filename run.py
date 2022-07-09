@@ -1,7 +1,15 @@
 import math
 
-# ギア比とスキッドポイント数の計算
 def skid_point(chain_ring: int, cog: int):
+    '''calculate the skid point
+
+    Args:
+        chain_ring: number of teeth on the chain ring
+        cog: number of teeth on the cog
+
+    Returns:
+        the skid point
+    '''
     lcm = math.lcm(chain_ring, cog)
     num_skid_points = round(lcm // chain_ring, 2)
     gear = round(chain_ring / cog, 2)
