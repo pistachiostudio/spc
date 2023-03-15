@@ -1,53 +1,46 @@
 import math
 
-def skid_point(chain_ring: int, cog: int):
-    '''calculate the skid point
+class SkidPointCalculator:
+    def __init__(self, chain_ring: int, cog: int):
+        self.chain_ring = chain_ring
+        self.cog = cog
 
-    Args:
-        chain_ring: number of teeth on the chain ring
-        cog: number of teeth on the cog
+    def calculate_lcm(self):
+        return math.lcm(self.chain_ring, self.cog)
 
-    Returns:
-        the skid point
-    '''
-    lcm = math.lcm(chain_ring, cog)
-    num_skid_points = round(lcm // chain_ring, 2)
-    gear = round(chain_ring / cog, 2)
-    return gear, num_skid_points
+    def calculate_num_skid_points(self):
+        return round(self.calculate_lcm() / self.chain_ring, 2)
+
+    def calculate_gear_ratio(self):
+        return round(self.chain_ring / self.cog, 2)
+
+    def calculate_skid_point(self):
+        return self.calculate_gear_ratio(), self.calculate_num_skid_points()
 
 # チェーンリングの歯の数の入力
-try:
-    chain_ring = int(input('チェーンリングの歯の数を入力してください。: '))
-except ValueError:
-    print('-----------------------')
-    print('⚠️ 数値を入力してください。')
-    print('-----------------------')
+while True:
     try:
         chain_ring = int(input('チェーンリングの歯の数を入力してください。: '))
+        break
     except ValueError:
         print('-----------------------')
-        print('⚠️ 数値を入力してください。言うこと聞かないので処理を中断します。')
+        print('⚠️ 数値を入力してください。')
         print('-----------------------')
-        exit()
 
 # コグの歯の数の入力
-try:
-    cog = int(input('コグの歯の数を入力してください。: '))
-except ValueError:
-    print('-----------------------')
-    print('⚠️ 数値を入力してください。')
-    print('-----------------------')
+while True:
     try:
         cog = int(input('コグの歯の数を入力してください。: '))
+        break
     except ValueError:
         print('-----------------------')
-        print('⚠️ 数値を入力してください。言うこと聞かないので処理を中断します。')
+        print('⚠️ 数値を入力してください。')
         print('-----------------------')
-        exit()
+
+calculator = SkidPointCalculator(chain_ring, cog)
 
 # 出力
 print('-----------------------')
-print('ギア比:', skid_point(chain_ring, cog)[0])
-print('スキッドポイント数:', skid_point(chain_ring, cog)[1])
+print('ギア比:', calculator.calculate_gear_ratio())
+print('スキッドポイント数:', calculator.calculate_num_skid_points())
 print('-----------------------')
-exit()
