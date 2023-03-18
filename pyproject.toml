@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "skid-point-calc"
+version = "1.0.0"
+description = "Skid Pint Calculator"
+authors = ["quojama <giantkoyama@gmail.com>"]
+license = "Mit"
+readme = "README.md"
+packages = [{include = "skid_point_calc"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mypy = "^1.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
